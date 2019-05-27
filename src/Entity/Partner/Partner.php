@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="partner.partner")
  * @ORM\Entity
+ * @ORM\Cache(usage="NONSTRICT_READ_WRITE")
  */
 class Partner
 {
@@ -70,6 +71,95 @@ class Partner
      * @ORM\Column(name="map", type="string", nullable=true)
      */
     private $map;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(?string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getC1Id(): ?string
+    {
+        return $this->c1Id;
+    }
+
+    public function setC1Id(?string $c1Id): self
+    {
+        $this->c1Id = $c1Id;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getWorkTime(): ?string
+    {
+        return $this->workTime;
+    }
+
+    public function setWorkTime(?string $workTime): self
+    {
+        $this->workTime = $workTime;
+
+        return $this;
+    }
+
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(?string $telephone): self
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getMap(): ?string
+    {
+        return $this->map;
+    }
+
+    public function setMap(?string $map): self
+    {
+        $this->map = $map;
+
+        return $this;
+    }
 
 
 }

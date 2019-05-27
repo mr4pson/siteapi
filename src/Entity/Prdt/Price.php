@@ -2,7 +2,10 @@
 
 namespace App\Entity\Prdt;
 
+use App\Entity\Cstmr\Company;
 use Doctrine\ORM\Mapping as ORM;
+//
+
 
 /**
  * Price
@@ -190,6 +193,37 @@ class Price
      * @ORM\Column(name="warehouse_code", type="string", length=8, nullable=true, options={"fixed"=true,"comment"="ЦБ склада 1С"})
      */
     private $warehouseCode;
+
+    /**
+     * @var \Company
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Cstmr\Company")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="company_id", referencedColumnName="id")
+     * })
+     */
+    private $company;
+
+
+    /**
+     * @var \PriceStatus
+     *
+     * @ORM\ManyToOne(targetEntity="PriceStatus")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="status", referencedColumnName="code")
+     * })
+     */
+    private $status;
+
+    /**
+     * @var \DCurrency
+     *
+     * @ORM\ManyToOne(targetEntity="DCurrency")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="currency_id", referencedColumnName="code")
+     * })
+     */
+    private $currency;
 
     public function getId(): ?int
     {
@@ -484,7 +518,42 @@ class Price
         return $this;
     }
 
-  
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
 
+    public function setCompany(?Company $company): self
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    public function getStatus(): ?PriceStatus
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?PriceStatus $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getCurrency(): ?DCurrency
+    {
+        return $this->currency;
+    }
+
+    public function setCurrency(?DCurrency $currency): self
+    {
+        $this->currency = $currency;
+
+        return $this;
+    }
+
+  
 
 }

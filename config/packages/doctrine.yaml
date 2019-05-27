@@ -14,7 +14,7 @@ doctrine:
         default_table_options:
             charset: utf8
             collate: utf8_general_ci
-        schema_filter: /^prdt._d_currency$/
+        schema_filter: /^cstmr.discount_by_brand$/
         mapping_types:
             enum: string
             set: string
@@ -26,13 +26,15 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
         second_level_cache:
-            enabled: false
+            enabled: true
+            region_cache_driver:
+                type: memcached
             log_enabled: true
-            region_lock_lifetime: 120
+            region_lock_lifetime: 10
             regions:
                 my_entity_region:
                     type: default
-                    lifetime: 3600
+                    lifetime: 10
                     
                     
         mappings:

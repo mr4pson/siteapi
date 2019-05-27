@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Product
  * @ORM\Entity
  * @ORM\Table(name="prdt.product", uniqueConstraints={@ORM\UniqueConstraint(name="uniq_products_oem_brand", columns={"oem", "brand_id"})}, indexes={@ORM\Index(name="idx_product_cross_group_id", columns={"cross_group_id"}), @ORM\Index(name="product_idx_main", columns={"product_main_id"}), @ORM\Index(name="idx_product_cross_group", columns={"cross_group_old"}), @ORM\Index(name="product_idx_todo", columns={"product_main_id", "oem"}), @ORM\Index(name="IDX_2E4831CD44F5D008", columns={"brand_id"})})
- * @ORM\Cache(usage="NONSTRICT_READ_WRITE")
+ * 
  */
 class Product
 {

@@ -15,7 +15,7 @@ services:
     # this creates a service per class whose id is the fully-qualified class name
     App\:
         resource: '../src/*'
-        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+        exclude: '../src/{DependencyInjection,Migrations,Tests,Kernel.php}'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
@@ -25,6 +25,39 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
-    App\Controller\AppController:
-        arguments:
-            $offerService: '@App\Service\OfferService'
+    App\RulesAnnotationListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
+ 
+
+    App\Controller\RestController:
+        abstract: false
+        #calls:
+        #    - [setLogger, ['@logger']]
+
+    
+    # App\Controller\CustomerController:
+    #     parent: App\Controller\RestController
+    #     autowire: true  
+    #     autoconfigure: false 
+   
+    App\Controller\OfferController:
+        parent: App\Controller\RestController
+        autowire: true  
+        autoconfigure: false
+        calls:
+            - [setServices, ['@App\Service\OfferService','@App\Service\PartnerService']]
+
+    App\Controller\BasketController:
+        parent: App\Controller\RestController
+        autowire: true  
+        autoconfigure: false
+        calls:
+            - [setBasketService, ['@App\Service\BasketService']]
+
+    App\Controller\OrderController:
+        parent: App\Controller\RestController
+        autowire: true  
+        autoconfigure: false
+        calls:
+            - [setOrderService, ['@App\Service\OrderService']]

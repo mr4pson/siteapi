@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="prdt.brand", uniqueConstraints={@ORM\UniqueConstraint(name="brand_code_key", columns={"code"})}, indexes={@ORM\Index(name="brand_idx_main_id_id", columns={"id", "main_id"}), @ORM\Index(name="brand_main_id_indx", columns={"main_id"}), @ORM\Index(name="brand_idx_code_main_id", columns={"code", "main_id"})})
  * @ORM\Entity
+ * @ORM\Cache(usage="NONSTRICT_READ_WRITE")
  */
 class Brand
 {

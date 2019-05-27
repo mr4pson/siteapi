@@ -16,9 +16,9 @@ class OfferRepository extends ServiceEntityRepository
         parent::__construct($registry, Offer::class);
     }
 
-    public function find($id, $lockMode = NULL, $lockVersion = NULL): Product
+    /*public function find($id, $lockMode = NULL, $lockVersion = NULL): Product
     {  
-        echo"OFFER FIND ".$id."\n";
+        //echo"OFFER FIND ".$id."\n";
         $key = md5('OfferRepository'.$id);
         $item = $this->cache->getItem($key);
         $item->expiresAfter(10);
@@ -28,11 +28,34 @@ class OfferRepository extends ServiceEntityRepository
             $this->cache->save($item);
         }
         return $item->get();
-    }
+    }*/
 
     public function findOfferByProduct(Product $product): array
     {
-        return $this->findBy(['product' => $product->getId(), 'isActual'=>true]);
+        //return $this->findBy(['product' => $product->getId(), 'isActual'=>true]);
+
+        $r = $this->createQueryBuilder('offer')
+            //->select('count(hit.id) as hits')
+            ->addSelect('product')
+            ->leftJoin('offer.product', 'product')
+                ->addSelect('priceList')
+                ->leftJoin('offer.priceList', 'priceList')
+                    ->addSelect('status')
+                    ->leftJoin('priceList.status', 'status')
+                ->addSelect('brand')
+                ->leftJoin('product.brand', 'brand')
+            
+            ->andWhere('offer.product = :product')
+            ->andWhere('offer.isActual = :isActual')
+            ->andWhere('status.code = :code')
+            ->setParameter('product', $product)
+            ->setParameter('isActual', true)
+            ->setParameter('code', 'Wk')
+            ->getQuery()
+            ->getResult();
+            //dump($r);
+        return $r;
+
     }
 }
 

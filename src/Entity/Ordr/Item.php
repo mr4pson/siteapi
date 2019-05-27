@@ -3,6 +3,7 @@
 namespace App\Entity\Ordr;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Prdt\Offer;
 
 /**
  * Item
@@ -37,11 +38,14 @@ class Item
     private $dm = 'now()';
 
     /**
-     * @var int|null
+     * @var \Offer
      *
-     * @ORM\Column(name="offer_id", type="bigint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Prdt\Offer", fetch="EAGER")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="offer_id", referencedColumnName="id")
+     * })
      */
-    private $offerId;
+    private $offer;
 
     /**
      * @var int|null
@@ -72,11 +76,14 @@ class Item
     private $hitDc;
 
     /**
-     * @var int|null
+     * @var \Ordr.basket
      *
-     * @ORM\Column(name="basket_id", type="integer", nullable=true, options={"comment"="Id Корзины из ordr.basket "})
+     * @ORM\ManyToOne(targetEntity="Basket")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="basket_id", referencedColumnName="id")
+     * })
      */
-    private $basketId;
+    private $basket;
 
     /**
      * @var int|null
@@ -109,7 +116,7 @@ class Item
     /**
      * @var \Customer
      *
-     * @ORM\ManyToOne(targetEntity="Customer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Cstmr\Customer")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
      * })
@@ -139,7 +146,7 @@ class Item
     /**
      * @var \Price
      *
-     * @ORM\ManyToOne(targetEntity="Price")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Prdt\Price")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="price_id", referencedColumnName="id")
      * })
@@ -149,7 +156,7 @@ class Item
     /**
      * @var \Hit
      *
-     * @ORM\ManyToOne(targetEntity="Hit")
+     * @ORM\ManyToOne(targetEntity="App\Entity\hstry\Hit")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="hit_id", referencedColumnName="id")
      * })
@@ -185,14 +192,14 @@ class Item
         return $this;
     }
 
-    public function getOfferId(): ?int
+    public function getOffer(): ?Offer
     {
-        return $this->offerId;
+        return $this->offer;
     }
 
-    public function setOfferId(?int $offerId): self
+    public function setOffer(?Offer $offer): self
     {
-        $this->offerId = $offerId;
+        $this->offer = $offer;
 
         return $this;
     }
@@ -245,14 +252,14 @@ class Item
         return $this;
     }
 
-    public function getBasketId(): ?int
+    public function getBasket(): ?Basket
     {
-        return $this->basketId;
+        return $this->basket;
     }
 
-    public function setBasketId(?int $basketId): self
+    public function setBasket(?Basket $basket): self
     {
-        $this->basketId = $basketId;
+        $this->basket = $basket;
 
         return $this;
     }

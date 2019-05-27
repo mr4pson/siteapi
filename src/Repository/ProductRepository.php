@@ -16,9 +16,9 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
-    public function find($id, $lockMode = NULL, $lockVersion = NULL): Product
+    /*public function find($id, $lockMode = NULL, $lockVersion = NULL): Product
     {   
-        echo"PROD FIND ".$id."\n";
+        //echo"PROD FIND ".$id."\n";
         $key = md5('ProductRepository_'.$id);
         $item = $this->cache->getItem($key);
         $item->expiresAfter(10);
@@ -28,7 +28,7 @@ class ProductRepository extends ServiceEntityRepository
             $this->cache->save($item);
         }
         return $item->get();
-    }
+    }*/
 
 
     public function findByCrossGroupId(Product $product): array

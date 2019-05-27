@@ -43,5 +43,46 @@ class DiscountType
      */
     private $s;
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getCoef(): ?float
+    {
+        return $this->coef;
+    }
+
+    public function setCoef(?float $coef): self
+    {
+        $this->coef = $coef;
+
+        return $this;
+    }
+
+    public function getS(): ?int
+    {
+        return $this->s;
+    }
+
+    public function setS(?int $s): self
+    {
+        $this->s = $s;
+
+        return $this;
+    }
+
 
 }

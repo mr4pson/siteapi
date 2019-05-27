@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="prdt.offer", uniqueConstraints={@ORM\UniqueConstraint(name="offer_idx_product_price", columns={"product_id", "price_id"})}, indexes={@ORM\Index(name="offer_idx_product_is_actual", columns={"product_id", "is_actual"}), @ORM\Index(name="offer_idx_product", columns={"product_id"}), @ORM\Index(name="offer_idx_price_id", columns={"price_id"}), @ORM\Index(name="offer_idx_is_actual", columns={"is_actual"})})
  * @ORM\Entity
- * @ORM\Cache(usage="NONSTRICT_READ_WRITE")
+ *  @ORM\Cache(usage="NONSTRICT_READ_WRITE")
  */
 class Offer
 {
@@ -125,7 +125,7 @@ class Offer
      *   @ORM\JoinColumn(name="price_id", referencedColumnName="id")
      * })
      */
-    private $price2;
+    private $priceList;
 
     public function getId(): ?int
     {
@@ -288,14 +288,14 @@ class Offer
         return $this;
     }
 
-    public function getPrice2(): ?Price
+    public function getPriceList(): ?Price
     {
-        return $this->price2;
+        return $this->priceList;
     }
 
-    public function setPrice2(?Price $price2): self
+    public function setPriceList(?Price $priceList): self
     {
-        $this->price2 = $price2;
+        $this->priceList = $priceList;
 
         return $this;
     }
@@ -310,6 +310,12 @@ class Offer
     {
         return $this->getProduct()->getBrand()->getId();
     }
+
+
+    public function getPriceListStatusCode(){
+        return $this->getPriceList()->getStatus()->getCode();
+    }
+
 
 
 }

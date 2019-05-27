@@ -2,6 +2,7 @@
 
 namespace App\Entity\Cstmr;
 
+use App\Entity\Ordr\DiscountType;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -9,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="cstmr.customer", uniqueConstraints={@ORM\UniqueConstraint(name="customer_email_key", columns={"email"})}, indexes={@ORM\Index(name="customer_idx_branch", columns={"branch_id", "id"}), @ORM\Index(name="IDX_C6A1FF3F8BAC62AF", columns={"city_id"}), @ORM\Index(name="IDX_C6A1FF3F98260155", columns={"region_id"}), @ORM\Index(name="IDX_C6A1FF3F125C5293", columns={"discount_type"}), @ORM\Index(name="IDX_C6A1FF3F979B1AD6", columns={"company_id"})})
  * @ORM\Entity
+ * 
  */
 class Customer
 {
@@ -272,6 +274,431 @@ class Customer
      * })
      */
     private $company;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getDc(): ?\DateTimeInterface
+    {
+        return $this->dc;
+    }
+
+    public function setDc(?\DateTimeInterface $dc): self
+    {
+        $this->dc = $dc;
+
+        return $this;
+    }
+
+    public function getDm(): ?\DateTimeInterface
+    {
+        return $this->dm;
+    }
+
+    public function setDm(?\DateTimeInterface $dm): self
+    {
+        $this->dm = $dm;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getSecondName(): ?string
+    {
+        return $this->secondName;
+    }
+
+    public function setSecondName(?string $secondName): self
+    {
+        $this->secondName = $secondName;
+
+        return $this;
+    }
+
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    public function setLastName(?string $lastName): self
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getPhone(): ?int
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?int $phone): self
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getMaxQueryCount(): ?int
+    {
+        return $this->maxQueryCount;
+    }
+
+    public function setMaxQueryCount(?int $maxQueryCount): self
+    {
+        $this->maxQueryCount = $maxQueryCount;
+
+        return $this;
+    }
+
+    public function getQueryByDay(): ?int
+    {
+        return $this->queryByDay;
+    }
+
+    public function setQueryByDay(?int $queryByDay): self
+    {
+        $this->queryByDay = $queryByDay;
+
+        return $this;
+    }
+
+    public function getLastQueryDt(): ?\DateTimeInterface
+    {
+        return $this->lastQueryDt;
+    }
+
+    public function setLastQueryDt(?\DateTimeInterface $lastQueryDt): self
+    {
+        $this->lastQueryDt = $lastQueryDt;
+
+        return $this;
+    }
+
+    public function getActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(?bool $active): self
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    public function getLogin(): ?string
+    {
+        return $this->login;
+    }
+
+    public function setLogin(?string $login): self
+    {
+        $this->login = $login;
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(?string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    public function getIp(): ?string
+    {
+        return $this->ip;
+    }
+
+    public function setIp(?string $ip): self
+    {
+        $this->ip = $ip;
+
+        return $this;
+    }
+
+    public function getDl(): ?\DateTimeInterface
+    {
+        return $this->dl;
+    }
+
+    public function setDl(?\DateTimeInterface $dl): self
+    {
+        $this->dl = $dl;
+
+        return $this;
+    }
+
+    public function getDe(): ?\DateTimeInterface
+    {
+        return $this->de;
+    }
+
+    public function setDe(?\DateTimeInterface $de): self
+    {
+        $this->de = $de;
+
+        return $this;
+    }
+
+    public function getSmartPrice(): ?bool
+    {
+        return $this->smartPrice;
+    }
+
+    public function setSmartPrice(bool $smartPrice): self
+    {
+        $this->smartPrice = $smartPrice;
+
+        return $this;
+    }
+
+    public function getLat()
+    {
+        return $this->lat;
+    }
+
+    public function setLat($lat): self
+    {
+        $this->lat = $lat;
+
+        return $this;
+    }
+
+    public function getLon()
+    {
+        return $this->lon;
+    }
+
+    public function setLon($lon): self
+    {
+        $this->lon = $lon;
+
+        return $this;
+    }
+
+    public function getPhoneWork(): ?int
+    {
+        return $this->phoneWork;
+    }
+
+    public function setPhoneWork(?int $phoneWork): self
+    {
+        $this->phoneWork = $phoneWork;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getInfo(): ?array
+    {
+        return $this->info;
+    }
+
+    public function setInfo(?array $info): self
+    {
+        $this->info = $info;
+
+        return $this;
+    }
+
+    public function getApm()
+    {
+        return $this->apm;
+    }
+
+    public function setApm($apm): self
+    {
+        $this->apm = $apm;
+
+        return $this;
+    }
+
+    public function getBranchId(): ?int
+    {
+        return $this->branchId;
+    }
+
+    public function setBranchId(int $branchId): self
+    {
+        $this->branchId = $branchId;
+
+        return $this;
+    }
+
+    public function getDeliveryFree(): ?bool
+    {
+        return $this->deliveryFree;
+    }
+
+    public function setDeliveryFree(?bool $deliveryFree): self
+    {
+        $this->deliveryFree = $deliveryFree;
+
+        return $this;
+    }
+
+    public function getDf(): ?bool
+    {
+        return $this->df;
+    }
+
+    public function setDf(?bool $df): self
+    {
+        $this->df = $df;
+
+        return $this;
+    }
+
+    public function getBxId(): ?int
+    {
+        return $this->bxId;
+    }
+
+    public function setBxId(?int $bxId): self
+    {
+        $this->bxId = $bxId;
+
+        return $this;
+    }
+
+    public function getVisible(): ?bool
+    {
+        return $this->visible;
+    }
+
+    public function setVisible(?bool $visible): self
+    {
+        $this->visible = $visible;
+
+        return $this;
+    }
+
+    public function getBxLeadId(): ?int
+    {
+        return $this->bxLeadId;
+    }
+
+    public function setBxLeadId(?int $bxLeadId): self
+    {
+        $this->bxLeadId = $bxLeadId;
+
+        return $this;
+    }
+
+    public function getBxManagerId(): ?int
+    {
+        return $this->bxManagerId;
+    }
+
+    public function setBxManagerId(?int $bxManagerId): self
+    {
+        $this->bxManagerId = $bxManagerId;
+
+        return $this;
+    }
+
+    public function getUserId(): ?int
+    {
+        return $this->userId;
+    }
+
+    public function setUserId(?int $userId): self
+    {
+        $this->userId = $userId;
+
+        return $this;
+    }
+
+    public function getIsPrivatePerson(): ?bool
+    {
+        return $this->isPrivatePerson;
+    }
+
+    public function setIsPrivatePerson(?bool $isPrivatePerson): self
+    {
+        $this->isPrivatePerson = $isPrivatePerson;
+
+        return $this;
+    }
+
+    public function getDefaultRequisiteId(): ?int
+    {
+        return $this->defaultRequisiteId;
+    }
+
+    public function setDefaultRequisiteId(?int $defaultRequisiteId): self
+    {
+        $this->defaultRequisiteId = $defaultRequisiteId;
+
+        return $this;
+    }
+
+    public function getDiscountType(): ?DiscountType
+    {
+        return $this->discountType;
+    }
+
+    public function setDiscountType(?DiscountType $discountType): self
+    {
+        $this->discountType = $discountType;
+
+        return $this;
+    }
+
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Company $company): self
+    {
+        $this->company = $company;
+
+        return $this;
+    }
 
 
 }

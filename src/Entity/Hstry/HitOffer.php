@@ -2,6 +2,8 @@
 
 namespace App\Entity\Hstry;
 
+use App\Entity\Prdt\Price;
+use App\Entity\Prdt\Product;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -95,7 +97,7 @@ class HitOffer
     /**
      * @var \Hit
      *
-     * @ORM\ManyToOne(targetEntity="Hit")
+     * @ORM\ManyToOne(targetEntity="Hit", inversedBy="hitOffers", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="hit_id", referencedColumnName="id")
      * })
@@ -103,24 +105,185 @@ class HitOffer
     private $hit;
 
     /**
-     * @var \Prdt.price
+     * @var \Price
      *
-     * @ORM\ManyToOne(targetEntity="Prdt.price")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Prdt\Price")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="price_id", referencedColumnName="id")
      * })
      */
-    private $price2;
+    private $priceList;
 
     /**
-     * @var \Prdt.product
+     * @var \Product
      *
-     * @ORM\ManyToOne(targetEntity="Prdt.product")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Prdt\Product")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      * })
      */
     private $product;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getOfferHistoryId(): ?int
+    {
+        return $this->offerHistoryId;
+    }
+
+    public function setOfferHistoryId(?int $offerHistoryId): self
+    {
+        $this->offerHistoryId = $offerHistoryId;
+
+        return $this;
+    }
+
+    public function getBrand(): ?string
+    {
+        return $this->brand;
+    }
+
+    public function setBrand(?string $brand): self
+    {
+        $this->brand = $brand;
+
+        return $this;
+    }
+
+    public function getOem(): ?string
+    {
+        return $this->oem;
+    }
+
+    public function setOem(?string $oem): self
+    {
+        $this->oem = $oem;
+
+        return $this;
+    }
+
+    public function getCoefCalculated(): ?float
+    {
+        return $this->coefCalculated;
+    }
+
+    public function setCoefCalculated(?float $coefCalculated): self
+    {
+        $this->coefCalculated = $coefCalculated;
+
+        return $this;
+    }
+
+    public function getCoefMinMarkup(): ?float
+    {
+        return $this->coefMinMarkup;
+    }
+
+    public function setCoefMinMarkup(?float $coefMinMarkup): self
+    {
+        $this->coefMinMarkup = $coefMinMarkup;
+
+        return $this;
+    }
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(?float $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getSrok(): ?int
+    {
+        return $this->srok;
+    }
+
+    public function setSrok(?int $srok): self
+    {
+        $this->srok = $srok;
+
+        return $this;
+    }
+
+    public function getRest(): ?int
+    {
+        return $this->rest;
+    }
+
+    public function setRest(?int $rest): self
+    {
+        $this->rest = $rest;
+
+        return $this;
+    }
+
+    public function getTest(): ?int
+    {
+        return $this->test;
+    }
+
+    public function setTest(?int $test): self
+    {
+        $this->test = $test;
+
+        return $this;
+    }
+
+    public function getCoefPartner(): ?float
+    {
+        return $this->coefPartner;
+    }
+
+    public function setCoefPartner(?float $coefPartner): self
+    {
+        $this->coefPartner = $coefPartner;
+
+        return $this;
+    }
+
+    public function getHit(): ?Hit
+    {
+        return $this->hit;
+    }
+
+    public function setHit(?Hit $hit): self
+    {
+        $this->hit = $hit;
+
+        return $this;
+    }
+
+    public function getPriceList(): ?Price
+    {
+        return $this->priceList;
+    }
+
+    public function setPriceList(?Price $priceList): self
+    {
+        $this->priceList = $priceList;
+
+        return $this;
+    }
+
+    public function getProduct(): ?Product
+    {
+        return $this->product;
+    }
+
+    public function setProduct(?Product $product): self
+    {
+        $this->product = $product;
+
+        return $this;
+    }
 
 
 }
